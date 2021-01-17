@@ -17,6 +17,8 @@ object Versions {
     const val appCompatVersion = "1.2.0"
     const val materialVersion = "1.2.1"
     const val lifecycleVersion = "2.3.0-rc01"
+    const val activityVersion = "1.2.0-rc01"
+    const val fragmentVersion = "1.3.0-rc01"
 
     // ComposeUI
     const val composeVersion = "1.0.0-alpha08"
@@ -37,6 +39,8 @@ object Androidx {
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+    const val activity = "androidx.activity:activity-ktx:${Versions.activityVersion}"
+    const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragmentVersion}"
 }
 
 /**
