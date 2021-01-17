@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.3")
+    compileSdkVersion(Config.compileSdkVersion)
+    buildToolsVersion(Config.buildToolsVersions)
 
     defaultConfig {
         applicationId = "com.seiko.pokedex"
-        minSdkVersion(23)
-        targetSdkVersion(30)
+        minSdkVersion(Config.minSdkVersion)
+        targetSdkVersion(Config.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
 
