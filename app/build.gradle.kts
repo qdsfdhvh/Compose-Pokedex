@@ -51,6 +51,7 @@ dependencies {
     implementation(Compose.material)
     implementation(Compose.uiTooling)
     implementation(Androidx.liveData)
+    implementation(Androidx.viewModel)
     testImplementation(TestLib.junit)
     androidTestImplementation(TestLib.testExt)
     androidTestImplementation(TestLib.espresso)

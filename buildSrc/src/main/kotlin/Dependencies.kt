@@ -36,6 +36,7 @@ object Androidx {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
 }
 
 /**
