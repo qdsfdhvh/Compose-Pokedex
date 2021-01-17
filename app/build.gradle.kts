@@ -44,15 +44,14 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.compose.ui:ui:${Versions.composeVersion}")
-    implementation("androidx.compose.material:material:${Versions.composeVersion}")
-    implementation("androidx.compose.ui:ui-tooling:${Versions.composeVersion}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    implementation(Androidx.coreKtx)
+    implementation(Androidx.appCompat)
+    implementation(Androidx.material)
+    implementation(Compose.ui)
+    implementation(Compose.material)
+    implementation(Compose.uiTooling)
+    implementation(Androidx.liveData)
+    testImplementation(TestLib.junit)
+    androidTestImplementation(TestLib.testExt)
+    androidTestImplementation(TestLib.espresso)
 }
