@@ -1,3 +1,6 @@
+const val kotlinAndroid: String = "android"
+const val kotlinKapt: String = "kapt"
+
 /**
  * @author seiko
  */
@@ -12,6 +15,10 @@ object Config {
  * @author seiko
  */
 object Versions {
+    // Plugin
+    const val androidGradleVersion = "7.0.0-alpha04"
+    const val kotlinVersion = "1.4.21"
+
     // Androidx
     const val coreKtxVersion = "1.3.2"
     const val appCompatVersion = "1.2.0"
@@ -23,10 +30,24 @@ object Versions {
     // ComposeUI
     const val composeVersion = "1.0.0-alpha08"
 
+    // Hilt
+    const val hiltCoreVersion = "2.31-alpha"
+    const val hiltVersion = "1.0.0-alpha02"
+
     // Test
     const val junitVersion = "4.13"
     const val testExtVersion = "1.1.2"
     const val espressoVersion = "3.3.0"
+}
+
+/**
+ * Gradle
+ * @author seiko
+ */
+object Plugin {
+    const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradleVersion}"
+    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltCoreVersion}"
 }
 
 /**
@@ -41,6 +62,18 @@ object Androidx {
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
     const val activity = "androidx.activity:activity-ktx:${Versions.activityVersion}"
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragmentVersion}"
+}
+
+/**
+ * Dagger2&Hilt
+ * @author seiko
+ */
+object Hilt {
+    const val android = "com.google.dagger:hilt-android:${Versions.hiltCoreVersion}"
+    const val common = "androidx.hilt:hilt-common:${Versions.hiltVersion}"
+    const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltVersion}"
+    const val hiltCoreCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltCoreVersion}"
+    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltVersion}"
 }
 
 /**

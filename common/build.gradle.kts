@@ -1,6 +1,7 @@
 plugins {
   androidLibrary
   kotlin(kotlinAndroid)
+  kotlin(kotlinKapt)
 }
 
 android {
@@ -27,4 +28,10 @@ dependencies {
   api(Androidx.material)
   api(Androidx.activity)
   api(Androidx.fragment)
+
+  api(Hilt.android)
+  api(Hilt.common)
+  api(Hilt.viewModel)
+  kapt(Hilt.hiltCoreCompiler)
+  kapt(Hilt.hiltCompiler)
 }
