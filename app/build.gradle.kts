@@ -44,11 +44,7 @@ android {
 }
 
 dependencies {
-    implementation(Androidx.coreKtx)
-    implementation(Androidx.appCompat)
-    implementation(Androidx.material)
-    implementation(Androidx.activity)
-    implementation(Androidx.fragment)
+    implementation(project(ProjectLib.common))
     implementation(Compose.ui)
     implementation(Compose.material)
     implementation(Compose.uiTooling)

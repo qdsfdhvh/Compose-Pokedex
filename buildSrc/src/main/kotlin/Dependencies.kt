@@ -62,3 +62,11 @@ object TestLib {
     const val testExt = "androidx.test.ext:junit:${Versions.testExtVersion}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
 }
+
+/**
+ * 本地
+ * @author seiko
+ */
+object ProjectLib {
+    const val common = ":common"
+}
