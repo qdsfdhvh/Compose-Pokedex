@@ -1,4 +1,4 @@
-package com.seiko.common.extensions
+package com.seiko.base.extensions
 
 import java.net.URLEncoder
 

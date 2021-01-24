@@ -1,6 +1,6 @@
-package com.seiko.common.router
+package com.seiko.base.router
 
-import com.seiko.common.extensions.toUrlEncode
+import com.seiko.base.extensions.toUrlEncode
 
 object Routes {
 

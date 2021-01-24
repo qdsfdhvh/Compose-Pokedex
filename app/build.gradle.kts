@@ -46,7 +46,6 @@ android {
 }
 
 dependencies {
-  implementation(project(ProjectLib.common))
   implementation(Compose.ui)
   implementation(Compose.material)
   implementation(Compose.materialIconsExtends)
@@ -61,6 +60,8 @@ dependencies {
   implementation(Hilt.android)
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
+
+  implementation(project(ProjectLib.base))
 
   testImplementation(TestLib.junit)
   androidTestImplementation(TestLib.testExt)

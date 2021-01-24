@@ -84,6 +84,7 @@ object Hilt {
 object Compose {
     const val ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
     const val material = "androidx.compose.material:material:${Versions.composeVersion}"
+    const val materialIconsExtends = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
     const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
 }
 
@@ -102,5 +103,5 @@ object TestLib {
  * @author seiko
  */
 object ProjectLib {
-    const val common = ":common"
+    const val base = ":base"
 }

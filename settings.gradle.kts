@@ -1,2 +1,2 @@
 rootProject.name = "compose-pokedex"
-include(":app", ":common")
+include(":app", ":base")
