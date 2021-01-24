@@ -41,9 +41,6 @@ dependencies {
   api(Compose.runtime)
   api(Compose.navigation)
 
-  api(Hilt.android)
-  api(Hilt.common)
-  api(Hilt.viewModel)
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
 }

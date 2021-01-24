@@ -29,5 +29,14 @@ dependencies {
   api(Androidx.activity)
   api(Androidx.fragment)
 
+  api(Hilt.android)
+  api(Hilt.common)
+  api(Hilt.viewModel)
+  kapt(Hilt.hiltCoreCompiler)
+  kapt(Hilt.hiltCompiler)
+
   api(ThirdLib.timber)
+
+  // initial https://github.com/NoEndToLF/AppStartFaster
+  api("com.github.NoEndToLF:AppStartFaster:1.0.3")
 }

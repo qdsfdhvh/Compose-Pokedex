@@ -16,5 +16,6 @@ fun RepositoryHandler.applyDefault() {
   google()
   jcenter()
   mavenCentral()
+  maven("https://jitpack.io")
   maven("https://dl.bintray.com/kotlin/kotlin-eap")
 }

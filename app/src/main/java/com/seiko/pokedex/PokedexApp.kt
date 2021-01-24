@@ -1,7 +1,7 @@
 package com.seiko.pokedex
 
-import android.app.Application
+import com.seiko.base.BaseApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class PokedexApp : Application()
+class PokedexApp : BaseApplication()

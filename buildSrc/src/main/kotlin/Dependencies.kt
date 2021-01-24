@@ -35,6 +35,9 @@ object Versions {
     const val hiltCoreVersion = "2.31-alpha"
     const val hiltVersion = "1.0.0-alpha02"
 
+    // Json
+    const val moshiVersion = "1.11.0"
+
     // Test
     const val junitVersion = "4.13"
     const val testExtVersion = "1.1.2"
@@ -88,6 +91,14 @@ object Compose {
     const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
     const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavVersion}"
+}
+
+/**
+ * Json
+ */
+object Moshi {
+    const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshiVersion}"
+    const val moshiCompiler = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshiVersion}"
 }
 
 /**
