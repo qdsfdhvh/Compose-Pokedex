@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+  implementation(project(ProjectLib.base))
+
   api(Compose.ui)
   api(Compose.material)
   api(Compose.materialIconsExtends)
