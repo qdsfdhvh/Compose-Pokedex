@@ -71,10 +71,10 @@ object Androidx {
  */
 object Hilt {
     const val android = "com.google.dagger:hilt-android:${Versions.hiltCoreVersion}"
-    const val common = "androidx.hilt:hilt-common:${Versions.hiltVersion}"
-    const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltVersion}"
     const val hiltCoreCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltCoreVersion}"
+    const val common = "androidx.hilt:hilt-common:${Versions.hiltVersion}"
     const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltVersion}"
+    const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltVersion}"
 }
 
 /**
@@ -86,6 +86,8 @@ object Compose {
     const val material = "androidx.compose.material:material:${Versions.composeVersion}"
     const val materialIconsExtends = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
     const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
+    const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavVersion}"
 }
 
 /**
@@ -104,4 +106,5 @@ object TestLib {
  */
 object ProjectLib {
     const val base = ":base"
+    const val commonCompose = ":common:compose"
 }

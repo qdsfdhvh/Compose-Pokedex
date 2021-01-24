@@ -28,33 +28,30 @@ android {
       )
     }
   }
+
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
   }
+
   kotlinOptions {
     jvmTarget = "1.8"
     useIR = true
   }
+
   buildFeatures {
     compose = true
   }
+
   composeOptions {
     kotlinCompilerExtensionVersion = Versions.composeVersion
-    kotlinCompilerVersion = "1.4.20"
+    kotlinCompilerVersion = Versions.kotlinVersion
   }
 }
 
 dependencies {
-  implementation(Compose.ui)
-  implementation(Compose.material)
-  implementation(Compose.materialIconsExtends)
-  implementation(Compose.uiTooling)
   implementation(Androidx.liveData)
   implementation(Androidx.viewModel)
-
-  // Compose Navigation
-  implementation("androidx.navigation:navigation-compose:${Versions.composeNavVersion}")
 
   // Hilt
   implementation(Hilt.android)
@@ -62,6 +59,7 @@ dependencies {
   kapt(Hilt.hiltCompiler)
 
   implementation(project(ProjectLib.base))
+  implementation(project(ProjectLib.commonCompose))
 
   testImplementation(TestLib.junit)
   androidTestImplementation(TestLib.testExt)
