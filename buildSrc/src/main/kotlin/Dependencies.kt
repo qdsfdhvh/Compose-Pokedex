@@ -29,6 +29,7 @@ object Versions {
 
     // ComposeUI
     const val composeVersion = "1.0.0-alpha08"
+    const val composeNavVersion = "1.0.0-alpha05"
 
     // Hilt
     const val hiltCoreVersion = "2.31-alpha"
