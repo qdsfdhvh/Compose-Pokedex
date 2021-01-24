@@ -31,13 +31,13 @@ kapt {
 dependencies {
   implementation(project(ProjectLib.base))
 
-  implementation("com.ljx.rxhttp:rxhttp:2.5.3")
+  val rxHttpVersion = "2.5.4"
+  implementation("com.ljx.rxhttp:rxhttp:${rxHttpVersion}")
   api("com.squareup.okhttp3:okhttp:4.9.0")
-  kapt("com.ljx.rxhttp:rxhttp-compiler:2.5.3")
-
-  implementation(Moshi.moshi)
-  kapt(Moshi.moshiCompiler)
+  kapt("com.ljx.rxhttp:rxhttp-compiler:${rxHttpVersion}")
+  implementation("com.ljx.rxhttp:converter-moshi:${rxHttpVersion}")
 
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
+  kapt(Moshi.moshiCompiler)
 }
