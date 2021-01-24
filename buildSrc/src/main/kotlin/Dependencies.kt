@@ -91,6 +91,13 @@ object Compose {
 }
 
 /**
+ * 其他
+ */
+object ThirdLib {
+    const val timber = "com.jakewharton.timber:timber:4.7.1"
+}
+
+/**
  * Test
  * @author seiko
  */

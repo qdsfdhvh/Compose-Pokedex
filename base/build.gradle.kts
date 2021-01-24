@@ -28,4 +28,6 @@ dependencies {
   api(Androidx.material)
   api(Androidx.activity)
   api(Androidx.fragment)
+
+  api(ThirdLib.timber)
 }
