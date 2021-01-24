@@ -40,6 +40,7 @@ dependencies {
   api(Compose.uiTooling)
   api(Compose.runtime)
   api(Compose.navigation)
+  api(Compose.liveData)
 
   // compose image loading
   implementation("com.github.skydoves:landscapist-coil:1.1.3")
