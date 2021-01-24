@@ -3,5 +3,6 @@ include(
   ":app",
   ":base",
   ":common:compose",
+  ":data",
   ":feature:home"
 )

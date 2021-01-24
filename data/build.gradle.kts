@@ -20,21 +20,23 @@ android {
     jvmTarget = "1.8"
     useIR = true
   }
+}
 
-  buildFeatures {
-    compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = Versions.composeVersion
-    kotlinCompilerVersion = Versions.kotlinVersion
+kapt {
+  arguments {
+    arg("rxhttp_package", "rxhttp")
   }
 }
 
 dependencies {
   implementation(project(ProjectLib.base))
-  implementation(project(ProjectLib.commonCompose))
-  implementation(project(ProjectLib.data))
+
+  implementation("com.ljx.rxhttp:rxhttp:2.5.3")
+  api("com.squareup.okhttp3:okhttp:4.9.0")
+  kapt("com.ljx.rxhttp:rxhttp-compiler:2.5.3")
+
+  implementation(Moshi.moshi)
+  kapt(Moshi.moshiCompiler)
 
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
