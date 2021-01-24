@@ -1,4 +1,4 @@
-package com.seiko.pokedex.ui.theme
+package com.seiko.common.compose.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
