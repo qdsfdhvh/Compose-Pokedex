@@ -28,6 +28,10 @@ dependencies {
   api(Androidx.material)
   api(Androidx.activity)
   api(Androidx.fragment)
+  api(Androidx.liveData)
+  api(Androidx.viewModel)
+
+  api(Coroutines.android)
 
   api(Hilt.android)
   api(Hilt.common)

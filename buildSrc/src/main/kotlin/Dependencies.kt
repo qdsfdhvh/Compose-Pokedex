@@ -35,6 +35,9 @@ object Versions {
   const val hiltCoreVersion = "2.31-alpha"
   const val hiltVersion = "1.0.0-alpha02"
 
+  // 协程
+  const val coroutinesVersion = "1.4.1"
+
   // Json
   const val moshiVersion = "1.11.0"
 
@@ -92,6 +95,14 @@ object Compose {
   const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
   const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
   const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavVersion}"
+}
+
+/**
+ * 协程
+ * @author seiko
+ */
+object Coroutines {
+  const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
 }
 
 /**

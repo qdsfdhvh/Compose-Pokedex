@@ -50,9 +50,6 @@ android {
 }
 
 dependencies {
-  implementation(Androidx.liveData)
-  implementation(Androidx.viewModel)
-
   // Hilt
   implementation(Hilt.android)
   kapt(Hilt.hiltCoreCompiler)
