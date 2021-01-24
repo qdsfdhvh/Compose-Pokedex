@@ -107,6 +107,7 @@ object Coroutines {
 
 /**
  * Json
+ * @author seiko
  */
 object Moshi {
   const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshiVersion}"
@@ -115,6 +116,7 @@ object Moshi {
 
 /**
  * 其他
+ * @author seiko
  */
 object ThirdLib {
   const val timber = "com.jakewharton.timber:timber:4.7.1"

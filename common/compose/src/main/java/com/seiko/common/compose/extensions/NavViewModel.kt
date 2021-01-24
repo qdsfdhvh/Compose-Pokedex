@@ -55,7 +55,6 @@ fun ProvideHiltViewModelFactoryParams(
   hiltDependencies: HiltDependencies,
   content: @Composable () -> Unit,
 ) {
-
   Providers(AmbientHiltDependencies provides hiltDependencies) {
     content()
   }
