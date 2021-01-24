@@ -41,6 +41,10 @@ dependencies {
   api(Compose.runtime)
   api(Compose.navigation)
 
+  // compose image loading
+  implementation("com.github.skydoves:landscapist-coil:1.1.3")
+
+
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
 }
