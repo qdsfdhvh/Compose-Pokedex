@@ -1,4 +1,4 @@
-package com.seiko.pokedex.ui
+package com.seiko.pokedex.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

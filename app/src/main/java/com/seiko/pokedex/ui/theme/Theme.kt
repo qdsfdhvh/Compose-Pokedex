@@ -1,4 +1,4 @@
-package com.seiko.pokedex.ui
+package com.seiko.pokedex.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

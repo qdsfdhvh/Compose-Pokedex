@@ -2,5 +2,6 @@ rootProject.name = "compose-pokedex"
 include(
   ":app",
   ":base",
-  ":common:compose"
+  ":common:compose",
+  ":feature:home"
 )
