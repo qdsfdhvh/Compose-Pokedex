@@ -28,7 +28,7 @@ object Versions {
     const val fragmentVersion = "1.3.0-rc01"
 
     // ComposeUI
-    const val composeVersion = "1.0.0-alpha08"
+    const val composeVersion = "1.0.0-alpha09"
     const val composeNavVersion = "1.0.0-alpha05"
 
     // Hilt
@@ -107,4 +107,5 @@ object TestLib {
 object ProjectLib {
     const val base = ":base"
     const val commonCompose = ":common:compose"
+    const val featureHome = ":feature:home"
 }
