@@ -59,6 +59,7 @@ dependencies {
   implementation(project(ProjectLib.commonCompose))
   implementation(project(ProjectLib.data))
   implementation(project(ProjectLib.featureHome))
+  implementation(project(ProjectLib.featureDetail))
 
   implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
 

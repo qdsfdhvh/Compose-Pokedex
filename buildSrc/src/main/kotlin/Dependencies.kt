@@ -142,4 +142,5 @@ object ProjectLib {
   const val commonCompose = ":common:compose"
   const val data = ":data"
   const val featureHome = ":feature:home"
+  const val featureDetail = ":feature:detail"
 }
