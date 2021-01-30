@@ -8,7 +8,12 @@ object Routes {
 
   const val Home = "home"
 
-  fun Detail(target: String): String =
-    "detail/${target.toUrlEncode()}"
+  object Detail {
+    const val argument01 = "pokemonName"
+    const val route = "detail/{${argument01}}"
+    operator fun invoke(target: String): String {
+      return "detail/${target.toUrlEncode()}"
+    }
+  }
 
 }

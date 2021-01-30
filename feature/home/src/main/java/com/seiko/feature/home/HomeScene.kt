@@ -1,6 +1,7 @@
 package com.seiko.feature.home
 
 import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
@@ -16,25 +17,35 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.seiko.base.router.Routes
+import com.seiko.common.compose.AmbientNavController
 import com.seiko.common.compose.extensions.navViewModel
 import com.seiko.common.compose.theme.ComposePokedexTheme
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.NetworkImage
 import com.seiko.common.compose.widget.StaggeredVerticalGrid
 import com.seiko.data.model.Pokemon
+import androidx.navigation.compose.navigate
 
 @Composable
 fun HomeScene() {
   val vm = navViewModel<HomeViewModel>()
   val pokemonList: List<Pokemon> by vm.pokemonList.observeAsState(emptyList())
+  val navController = AmbientNavController.current
   ComposePokedexTheme {
-    HomePokemonList(pokemonList)
+    HomePokemonList(
+      pokemonList = pokemonList,
+      onClick = { pokemon ->
+        navController.navigate(Routes.Detail(pokemon.name))
+      }
+    )
   }
 }
 
 @Composable
 fun HomePokemonList(
   pokemonList: List<Pokemon>,
+  onClick: (Pokemon) -> Unit,
 ) {
   ScrollableColumn {
     StaggeredVerticalGrid(
@@ -42,7 +53,10 @@ fun HomePokemonList(
       modifier = Modifier.padding(4.dp)
     ) {
       pokemonList.forEach { pokemon ->
-        HomePokemon(pokemon = pokemon)
+        HomePokemon(
+          pokemon = pokemon,
+          onClick = onClick,
+        )
       }
     }
   }
@@ -51,10 +65,13 @@ fun HomePokemonList(
 @Composable
 fun HomePokemon(
   pokemon: Pokemon,
+  onClick: (Pokemon) -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Surface(
-    modifier = modifier.padding(4.dp),
+    modifier = modifier
+      .padding(4.dp)
+      .clickable { onClick(pokemon) },
     color = MaterialTheme.colors.background,
     elevation = 8.dp,
     shape = RoundedCornerShape(8.dp)
@@ -93,10 +110,13 @@ fun HomePokemon(
 @Preview
 fun HomePokemonPreview() {
   ThemedPreview {
-    HomePokemon(pokemon = Pokemon(
-      page = 1,
-      name = "bulbasaur",
-      url = "https://pokeapi.co/api/v2/pokemon/1/"
-    ))
+    HomePokemon(
+      pokemon = Pokemon(
+        page = 1,
+        name = "bulbasaur",
+        url = "https://pokeapi.co/api/v2/pokemon/1/"
+      ),
+      onClick = {}
+    )
   }
 }

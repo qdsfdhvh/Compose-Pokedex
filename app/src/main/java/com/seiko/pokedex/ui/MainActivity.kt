@@ -59,7 +59,7 @@ class MainActivity : FragmentActivity() {
         ) {
           Router(
             navController = navController,
-            builder = { buildNavGraph(navController) }
+            builder = { buildNavGraph() }
           )
         }
       }
