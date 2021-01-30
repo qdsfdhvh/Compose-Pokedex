@@ -8,7 +8,7 @@ data class PokemonInfoResponse(
   val name: String,
   val height: Int,
   val weight: Int,
-  val experience: Int,
+  val experience: Int = 0,
   val types: List<TypeResponse>
 )
 
