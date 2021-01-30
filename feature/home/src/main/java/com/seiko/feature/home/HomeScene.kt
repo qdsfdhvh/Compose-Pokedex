@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.navigate
 import com.seiko.base.router.Routes
 import com.seiko.common.compose.AmbientNavController
 import com.seiko.common.compose.extensions.navViewModel
@@ -24,19 +25,17 @@ import com.seiko.common.compose.theme.ComposePokedexTheme
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.NetworkImage
 import com.seiko.common.compose.widget.StaggeredVerticalGrid
-import com.seiko.data.model.Pokemon
-import androidx.navigation.compose.navigate
 
 @Composable
 fun HomeScene() {
   val vm = navViewModel<HomeViewModel>()
-  val pokemonList: List<Pokemon> by vm.pokemonList.observeAsState(emptyList())
+  val list by vm.pokemonList.observeAsState(emptyList())
   val navController = AmbientNavController.current
   ComposePokedexTheme {
     HomePokemonList(
-      pokemonList = pokemonList,
-      onClick = { pokemon ->
-        navController.navigate(Routes.Detail(pokemon.name))
+      list = list,
+      onClick = { model ->
+        navController.navigate(Routes.Detail(model.pokemonName))
       }
     )
   }
@@ -44,19 +43,16 @@ fun HomeScene() {
 
 @Composable
 fun HomePokemonList(
-  pokemonList: List<Pokemon>,
-  onClick: (Pokemon) -> Unit,
+  list: List<HomeUiModel>,
+  onClick: (HomeUiModel) -> Unit,
 ) {
   ScrollableColumn {
     StaggeredVerticalGrid(
       maxColumnWidth = 220.dp,
       modifier = Modifier.padding(4.dp)
     ) {
-      pokemonList.forEach { pokemon ->
-        HomePokemon(
-          pokemon = pokemon,
-          onClick = onClick,
-        )
+      list.forEach { pokemon ->
+        HomePokemon(pokemon, onClick)
       }
     }
   }
@@ -64,14 +60,14 @@ fun HomePokemonList(
 
 @Composable
 fun HomePokemon(
-  pokemon: Pokemon,
-  onClick: (Pokemon) -> Unit,
+  model: HomeUiModel,
+  onClick: (HomeUiModel) -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Surface(
     modifier = modifier
       .padding(4.dp)
-      .clickable { onClick(pokemon) },
+      .clickable { onClick(model) },
     color = MaterialTheme.colors.background,
     elevation = 8.dp,
     shape = RoundedCornerShape(8.dp)
@@ -80,7 +76,7 @@ fun HomePokemon(
       val (image, title) = createRefs()
 
       NetworkImage(
-        url = pokemon.imageUrl,
+        url = model.pokemonLogo,
         modifier = Modifier
           .constrainAs(image) {
             centerHorizontallyTo(parent)
@@ -91,7 +87,7 @@ fun HomePokemon(
       )
 
       Text(
-        text = pokemon.name,
+        text = model.pokemonName,
         style = MaterialTheme.typography.h6,
         textAlign = TextAlign.Center,
         modifier = Modifier
@@ -111,10 +107,9 @@ fun HomePokemon(
 fun HomePokemonPreview() {
   ThemedPreview {
     HomePokemon(
-      pokemon = Pokemon(
-        page = 1,
-        name = "bulbasaur",
-        url = "https://pokeapi.co/api/v2/pokemon/1/"
+      model = HomeUiModel(
+        pokemonName = "bulbasaur",
+        pokemonLogo = "https://pokeres.bastionbot.org/images/pokemon/1.png"
       ),
       onClick = {}
     )

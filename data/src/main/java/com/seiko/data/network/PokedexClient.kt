@@ -1,7 +1,7 @@
 package com.seiko.data.network
 
 import com.seiko.data.model.PokemonInfoResponse
-import com.seiko.data.model.PokemonResponse
+import com.seiko.data.model.PokemonListResponse
 import dagger.hilt.android.scopes.ViewModelScoped
 import rxhttp.RxHttp
 import rxhttp.await
@@ -15,7 +15,7 @@ class PokedexClient @Inject constructor() {
   ) = RxHttp.get("pokemon")
     .add("offset", page * PAGE_SIZE)
     .add("limit", PAGE_SIZE)
-    .await<PokemonResponse>()
+    .await<PokemonListResponse>()
 
   suspend fun fetchPokemonInfo(
     name: String
