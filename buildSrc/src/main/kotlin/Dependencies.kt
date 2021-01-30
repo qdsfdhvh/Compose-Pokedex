@@ -16,7 +16,7 @@ object Config {
  */
 object Versions {
   // Plugin
-  const val androidGradleVersion = "7.0.0-alpha04"
+  const val androidGradleVersion = "7.0.0-alpha05"
   const val kotlinVersion = "1.4.21"
 
   // Androidx
