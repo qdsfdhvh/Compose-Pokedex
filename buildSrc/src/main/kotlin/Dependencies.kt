@@ -96,6 +96,8 @@ object Compose {
   const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
   const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavVersion}"
   const val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
+  const val foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
+  const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
 }
 
 /**
