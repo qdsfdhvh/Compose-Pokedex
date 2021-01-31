@@ -32,8 +32,8 @@ object Versions {
   const val composeNavVersion = "1.0.0-alpha05"
 
   // Hilt
-  const val hiltCoreVersion = "2.31-alpha"
-  const val hiltVersion = "1.0.0-alpha02"
+  const val hiltDaggerVersions = "2.31-alpha"
+  const val hiltVersion = "1.0.0-alpha03"
 
   // 协程
   const val coroutinesVersion = "1.4.1"
@@ -54,7 +54,7 @@ object Versions {
 object Plugin {
   const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradleVersion}"
   const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-  const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltCoreVersion}"
+  const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltDaggerVersions}"
 }
 
 /**
@@ -76,11 +76,12 @@ object Androidx {
  * @author seiko
  */
 object Hilt {
-  const val android = "com.google.dagger:hilt-android:${Versions.hiltCoreVersion}"
-  const val hiltCoreCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltCoreVersion}"
+  const val android = "com.google.dagger:hilt-android:${Versions.hiltDaggerVersions}"
+  const val hiltCoreCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltDaggerVersions}"
   const val common = "androidx.hilt:hilt-common:${Versions.hiltVersion}"
   const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltVersion}"
   const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltVersion}"
+  const val navigation = "androidx.hilt:hilt-navigation:${Versions.hiltVersion}"
 }
 
 /**

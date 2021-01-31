@@ -44,9 +44,10 @@ dependencies {
   api(Compose.foundationLayout)
   api(Compose.animation)
 
-  // ImageLoader https://github.com/chrisbanes/accompanist
-  implementation("dev.chrisbanes.accompanist:accompanist-coil:0.5.0")
-
+  api(Hilt.navigation)
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
+
+  // ImageLoader https://github.com/chrisbanes/accompanist
+  implementation("dev.chrisbanes.accompanist:accompanist-coil:0.5.0")
 }
