@@ -27,7 +27,6 @@ android {
 
   composeOptions {
     kotlinCompilerExtensionVersion = Versions.composeVersion
-    kotlinCompilerVersion = Versions.kotlinVersion
   }
 }
 
@@ -38,4 +37,8 @@ dependencies {
 
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
+
+  implementation("com.github.skydoves:progressview:1.1.0")
+
+  implementation("androidx.palette:palette:1.0.0")
 }
