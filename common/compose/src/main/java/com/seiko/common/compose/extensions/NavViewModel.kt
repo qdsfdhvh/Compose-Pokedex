@@ -1,66 +1,69 @@
 package com.seiko.common.compose.extensions
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.viewinterop.viewModel
-import androidx.lifecycle.SavedStateViewModelFactory
+import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.seiko.common.compose.AmbientApplication
 import com.seiko.common.compose.AmbientNavController
 import com.seiko.common.compose.AmbientViewModelProviderFactory
-import dagger.hilt.android.internal.builders.ViewModelComponentBuilder
-import dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
-import dagger.hilt.android.internal.lifecycle.HiltViewModelMap
-import javax.inject.Inject
+import dagger.MapKey
+import javax.inject.Provider
+import kotlin.reflect.KClass
 
-/**
- * Inspired from https://github.com/google/dagger/issues/2166#issuecomment-723775543
- *
- * PS: waiting for hilt-navigation release https://github.com/google/dagger/issues/2166#issuecomment-761061463
- */
+@MustBeDocumented
+@Target(
+  AnnotationTarget.FUNCTION,
+  AnnotationTarget.PROPERTY_GETTER,
+  AnnotationTarget.PROPERTY_SETTER
+)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ComposeAssistedFactoryKey(
+  val value: KClass<out ComposeAssistedFactory>,
+)
 
-val AmbientHiltDependencies = staticAmbientOf<HiltDependencies>()
+interface ComposeAssistedFactory
+
+val AmbientAssistedFactoryMap =
+  staticAmbientOf<Map<Class<out ComposeAssistedFactory>, Provider<ComposeAssistedFactory>>>()
 
 @Composable
 inline fun <reified VM : ViewModel> navViewModel(
   key: String? = null,
-  factory: ViewModelProvider.Factory? = AmbientViewModelProviderFactory.current
+  factory: ViewModelProvider.Factory? = AmbientViewModelProviderFactory.current,
 ): VM {
   val navController = AmbientNavController.current
   val backStackEntry = navController.currentBackStackEntryAsState().value
   return if (backStackEntry != null) {
-    // Hack for navigation viewModel
-    val application = AmbientApplication.current
-    val hiltDependencies = AmbientHiltDependencies.current
-    val delegatedFactory =
-      SavedStateViewModelFactory(application, backStackEntry, backStackEntry.arguments)
-    val hiltViewModelFactory = HiltViewModelFactory(
-      backStackEntry,
-      backStackEntry.arguments,
-      hiltDependencies.viewModelInjectKeys,
-      delegatedFactory,
-      hiltDependencies.viewModelComponentBuilder,
-    )
-    viewModel(key, hiltViewModelFactory)
+    viewModel(key, HiltViewModelFactory(
+      context = AmbientContext.current,
+      navBackStackEntry = backStackEntry
+    ))
   } else {
     viewModel(key, factory)
   }
 }
 
 @Composable
-fun ProvideHiltViewModelFactoryParams(
-  hiltDependencies: HiltDependencies,
-  content: @Composable () -> Unit,
-) {
-  Providers(AmbientHiltDependencies provides hiltDependencies) {
-    content()
+inline fun <reified AF : ComposeAssistedFactory, reified VM : ViewModel> assistedViewModel(
+  key: String? = null,
+  noinline creator: (AF) -> VM,
+): VM {
+  val assistedFactoryMap = AmbientAssistedFactoryMap.current
+  val factory = remember {
+    val assistedFactory = assistedFactoryMap[AF::class.java]
+      ?: error("could not find ComposeAssistedFactory with ${AF::class.java}")
+    object : ViewModelProvider.Factory {
+      override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
+        return creator(assistedFactory.get() as AF) as T
+      }
+    }
   }
+  return viewModel(key = key, factory = factory)
 }
-
-class HiltDependencies @Inject constructor(
-  @HiltViewModelMap.KeySet val viewModelInjectKeys: Set<String>,
-  val viewModelComponentBuilder: ViewModelComponentBuilder,
-)

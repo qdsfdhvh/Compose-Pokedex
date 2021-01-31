@@ -3,25 +3,26 @@ package com.seiko.feature.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import com.seiko.common.compose.extensions.ComposeAssistedFactory
 import com.seiko.data.repository.PokemonInfoRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-class DetailViewModel @Inject constructor(
-  private val pokemonInfoRepository: PokemonInfoRepository,
+class DetailViewModel @AssistedInject constructor(
+  pokemonInfoRepository: PokemonInfoRepository,
   private val mapper: DetailUiModelMapper,
+  @Assisted pokemonName: String,
 ) : ViewModel() {
+
+  val pokemonInfo: LiveData<DetailUiModel>
 
   init {
     Timber.d("$this is created")
-  }
 
-  fun fetch(pokemonName: String): LiveData<DetailUiModel> {
-    return pokemonInfoRepository.fetchPokemonInfo(pokemonName)
+    pokemonInfo = pokemonInfoRepository.fetchPokemonInfo(pokemonName)
       .map { mapper.mapTo(it) }
       .catch { Timber.w(it) }
       .asLiveData()
@@ -32,4 +33,8 @@ class DetailViewModel @Inject constructor(
     Timber.d("$this is clear")
   }
 
+  @dagger.assisted.AssistedFactory
+  interface AssistedFactory : ComposeAssistedFactory {
+    fun create(pokemonName: String): DetailViewModel
+  }
 }

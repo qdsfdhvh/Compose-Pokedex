@@ -12,17 +12,16 @@ import androidx.navigation.fragment.DialogFragmentNavigator
 import com.seiko.common.compose.AmbientActivity
 import com.seiko.common.compose.AmbientApplication
 import com.seiko.common.compose.AmbientWindow
-import com.seiko.common.compose.extensions.HiltDependencies
-import com.seiko.common.compose.extensions.ProvideHiltViewModelFactoryParams
-import com.seiko.common.compose.extensions.Router
+import com.seiko.common.compose.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import javax.inject.Provider
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
 
   @Inject
-  lateinit var hiltDependencies: HiltDependencies
+  lateinit var assistedFactoryMap: Map<Class<out ComposeAssistedFactory>, @JvmSuppressWildcards Provider<ComposeAssistedFactory>>
 
   private val navController by lazy(LazyThreadSafetyMode.NONE) {
     NavHostController(this).apply {
@@ -48,20 +47,13 @@ class MainActivity : FragmentActivity() {
       Providers(
         AmbientApplication provides application,
         AmbientActivity provides this,
-        AmbientWindow provides window
+        AmbientWindow provides window,
+        AmbientAssistedFactoryMap provides assistedFactoryMap,
       ) {
-        // @HiltViewModel
-        // dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
-        // @ViewModelInject
-        // androidx.hilt.lifecycle.HiltViewModelFactory
-        ProvideHiltViewModelFactoryParams(
-          hiltDependencies = hiltDependencies
-        ) {
-          Router(
-            navController = navController,
-            builder = { buildNavGraph() }
-          )
-        }
+        Router(
+          navController = navController,
+          builder = { buildNavGraph() }
+        )
       }
     }
   }

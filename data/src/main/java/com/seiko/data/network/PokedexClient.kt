@@ -2,12 +2,10 @@ package com.seiko.data.network
 
 import com.seiko.data.model.PokemonInfoResponse
 import com.seiko.data.model.PokemonListResponse
-import dagger.hilt.android.scopes.ViewModelScoped
 import rxhttp.RxHttp
 import rxhttp.await
 import javax.inject.Inject
 
-@ViewModelScoped
 class PokedexClient @Inject constructor() {
 
   suspend fun fetchPokemonList(

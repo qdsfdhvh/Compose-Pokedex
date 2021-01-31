@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -15,22 +14,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.seiko.common.compose.extensions.navViewModel
+import com.seiko.common.compose.extensions.assistedViewModel
 import com.seiko.common.compose.theme.shimmerHighLight
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.AppBarNavigationButton
 import com.seiko.common.compose.widget.NetworkImage
 import com.skydoves.progressview.ProgressView
 
-typealias JavaColor = android.graphics.Color
+private typealias JavaColor = android.graphics.Color
 
 @Composable
 fun DetailScene(
   pokemonName: String,
 ) {
-  val vm = navViewModel<DetailViewModel>()
-  val flow = remember { vm.fetch(pokemonName) }
-  val model by flow.observeAsState()
+  val vm = assistedViewModel<DetailViewModel.AssistedFactory, DetailViewModel>(
+    creator = { it.create(pokemonName) }
+  )
+  val model by vm.pokemonInfo.observeAsState()
   DetailPokemonInfo(model = model)
 }
 
