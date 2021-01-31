@@ -1,10 +1,13 @@
 package com.seiko.feature.home
 
-import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -24,7 +27,6 @@ import com.seiko.common.compose.extensions.navViewModel
 import com.seiko.common.compose.theme.ComposePokedexTheme
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.NetworkImage
-import com.seiko.common.compose.widget.StaggeredVerticalGrid
 
 @Composable
 fun HomeScene() {
@@ -42,18 +44,17 @@ fun HomeScene() {
 }
 
 @Composable
-fun HomePokemonList(
+private fun HomePokemonList(
   list: List<HomeUiModel>,
   onClick: (HomeUiModel) -> Unit,
 ) {
-  ScrollableColumn {
-    StaggeredVerticalGrid(
-      maxColumnWidth = 220.dp,
-      modifier = Modifier.padding(4.dp)
-    ) {
-      list.forEach { pokemon ->
-        HomePokemon(pokemon, onClick)
-      }
+  @OptIn(ExperimentalFoundationApi::class)
+  LazyVerticalGrid(cells = GridCells.Fixed(2)) {
+    items(list) {
+      HomePokemon(
+        model = it,
+        onClick = onClick
+      )
     }
   }
 }
