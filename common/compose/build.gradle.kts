@@ -42,10 +42,10 @@ dependencies {
   api(Compose.liveData)
   api(Compose.foundation)
   api(Compose.foundationLayout)
+  api(Compose.animation)
 
-  // compose image loading
-  implementation("com.github.skydoves:landscapist-coil:1.1.3")
-
+  // ImageLoader https://github.com/chrisbanes/accompanist
+  implementation("dev.chrisbanes.accompanist:accompanist-coil:0.5.0")
 
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)

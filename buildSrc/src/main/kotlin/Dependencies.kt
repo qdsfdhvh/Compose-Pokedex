@@ -17,7 +17,7 @@ object Config {
 object Versions {
   // Plugin
   const val androidGradleVersion = "7.0.0-alpha05"
-  const val kotlinVersion = "1.4.21"
+  const val kotlinVersion = "1.4.21-2"
 
   // Androidx
   const val coreKtxVersion = "1.3.2"
@@ -28,7 +28,7 @@ object Versions {
   const val fragmentVersion = "1.3.0-rc01"
 
   // ComposeUI
-  const val composeVersion = "1.0.0-alpha09"
+  const val composeVersion = "1.0.0-alpha11"
   const val composeNavVersion = "1.0.0-alpha05"
 
   // Hilt
@@ -98,6 +98,7 @@ object Compose {
   const val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
   const val foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
   const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
+  const val animation = "androidx.compose.animation:animation:${Versions.composeVersion}"
 }
 
 /**
