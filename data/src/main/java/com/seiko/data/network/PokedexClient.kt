@@ -5,7 +5,9 @@ import com.seiko.data.model.PokemonListResponse
 import rxhttp.RxHttp
 import rxhttp.await
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PokedexClient @Inject constructor() {
 
   suspend fun fetchPokemonList(

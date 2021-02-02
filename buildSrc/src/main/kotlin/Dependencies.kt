@@ -30,6 +30,7 @@ object Versions {
   // ComposeUI
   const val composeVersion = "1.0.0-alpha11"
   const val composeNavVersion = "1.0.0-alpha05"
+  const val composePagingVersion = "1.0.0-alpha06"
 
   // Hilt
   const val hiltDaggerVersions = "2.31-alpha"
@@ -40,6 +41,9 @@ object Versions {
 
   // Json
   const val moshiVersion = "1.11.0"
+
+  // Jetpack
+  const val pagingVersion = "3.0.0-alpha12"
 
   // Test
   const val junitVersion = "4.13"
@@ -100,6 +104,7 @@ object Compose {
   const val foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
   const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
   const val animation = "androidx.compose.animation:animation:${Versions.composeVersion}"
+  const val paging = "androidx.paging:paging-compose:${Versions.composePagingVersion}"
 }
 
 /**
@@ -117,6 +122,14 @@ object Coroutines {
 object Moshi {
   const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshiVersion}"
   const val moshiCompiler = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshiVersion}"
+}
+
+/**
+ * Jetpack
+ * @author seiko
+ */
+object Jetpack {
+  const val pagingRuntime = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
 }
 
 /**

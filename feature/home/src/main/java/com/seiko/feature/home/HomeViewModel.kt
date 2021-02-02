@@ -1,12 +1,13 @@
 package com.seiko.feature.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.seiko.base.mapper.mapToList
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.seiko.data.repository.PokemonListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,16 +18,15 @@ class HomeViewModel @Inject constructor(
   private val mapper: HomeUiModelMapper,
 ) : ViewModel() {
 
-  val pokemonList: LiveData<List<HomeUiModel>>
+  val pokemonList: Flow<PagingData<HomeUiModel>>
 
   init {
     Timber.d("$this is created")
 
     pokemonList = pokemonListRepository
-      .fetchPokemonList(0)
-      .map { mapper.mapToList(it) }
-      .catch { Timber.w(it) }
-      .asLiveData()
+      .fetchPokemonList()
+      .map { data -> data.map { mapper.mapTo(it) } }
+      .cachedIn(viewModelScope)
   }
 
   override fun onCleared() {

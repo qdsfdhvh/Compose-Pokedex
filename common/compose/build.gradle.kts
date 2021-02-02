@@ -43,6 +43,7 @@ dependencies {
   api(Compose.foundation)
   api(Compose.foundationLayout)
   api(Compose.animation)
+  api(Compose.paging)
 
   api(Hilt.navigation)
   kapt(Hilt.hiltCoreCompiler)

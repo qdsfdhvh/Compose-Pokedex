@@ -39,6 +39,8 @@ dependencies {
   kapt(Hilt.hiltCoreCompiler)
   kapt(Hilt.hiltCompiler)
 
+  api(Jetpack.pagingRuntime)
+
   api(ThirdLib.timber)
 
   api(Moshi.moshi)
