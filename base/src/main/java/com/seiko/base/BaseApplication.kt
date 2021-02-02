@@ -2,8 +2,8 @@ package com.seiko.base
 
 import android.app.Application
 import com.seiko.base.initializer.AppInitializer
+import com.seiko.base.initializer.AppStartTaskDispatcher
 import com.seiko.base.util.ProcessUtils
-import com.wxy.appstartfaster.dispatcher.AppStartTaskDispatcher
 import javax.inject.Inject
 
 abstract class BaseApplication : Application() {
@@ -20,14 +20,11 @@ abstract class BaseApplication : Application() {
   }
 
   private fun initAppStartTask() {
-    val builder = AppStartTaskDispatcher.getInstance()
-      .setContext(this)
+    AppStartTaskDispatcher()
       .setShowLog(BuildConfig.DEBUG)
       .setAllTaskWaitTimeOut(1000)
-    initializers.forEach { initializer ->
-      builder.addAppStartTask(initializer)
-    }
-    builder.start()
+      .addAppStartTasks(initializers)
+      .start(this)
       .await()
   }
 

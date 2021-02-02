@@ -42,7 +42,4 @@ dependencies {
   api(ThirdLib.timber)
 
   api(Moshi.moshi)
-
-  // initial https://github.com/NoEndToLF/AppStartFaster
-  api("com.github.NoEndToLF:AppStartFaster:1.0.3")
 }
