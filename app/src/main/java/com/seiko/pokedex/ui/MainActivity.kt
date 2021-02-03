@@ -13,6 +13,7 @@ import com.seiko.common.compose.AmbientActivity
 import com.seiko.common.compose.AmbientApplication
 import com.seiko.common.compose.AmbientWindow
 import com.seiko.common.compose.extensions.*
+import com.seiko.common.compose.theme.ComposePokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import javax.inject.Provider
@@ -50,10 +51,12 @@ class MainActivity : FragmentActivity() {
         AmbientWindow provides window,
         AmbientAssistedFactoryMap provides assistedFactoryMap,
       ) {
-        Router(
-          navController = navController,
-          builder = { buildNavGraph() }
-        )
+        ComposePokedexTheme {
+          Router(
+            navController = navController,
+            builder = { buildNavGraph() }
+          )
+        }
       }
     }
   }

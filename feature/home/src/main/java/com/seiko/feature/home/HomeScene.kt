@@ -23,7 +23,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.seiko.base.router.Routes
 import com.seiko.common.compose.AmbientNavController
 import com.seiko.common.compose.extensions.navViewModel
-import com.seiko.common.compose.theme.ComposePokedexTheme
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.NetworkImage
 
@@ -32,14 +31,12 @@ fun HomeScene() {
   val vm = navViewModel<HomeViewModel>()
   val list = vm.pokemonList.collectAsLazyPagingItems()
   val navController = AmbientNavController.current
-  ComposePokedexTheme {
-    HomePokemonList(
-      list = list,
-      onClick = { model ->
-        navController.navigate(Routes.Detail(model.pokemonName))
-      }
-    )
-  }
+  HomePokemonList(
+    list = list,
+    onClick = { model ->
+      navController.navigate(Routes.Detail(model.pokemonName))
+    }
+  )
 }
 
 @Composable
