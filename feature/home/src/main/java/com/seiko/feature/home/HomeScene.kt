@@ -18,21 +18,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.navigate
-import androidx.paging.compose.LazyPagingItems
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.seiko.base.router.Routes
 import com.seiko.common.compose.AmbientNavController
 import com.seiko.common.compose.extensions.navViewModel
 import com.seiko.common.compose.util.ThemedPreview
 import com.seiko.common.compose.widget.NetworkImage
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun HomeScene() {
-  val vm = navViewModel<HomeViewModel>()
-  val list = vm.pokemonList.collectAsLazyPagingItems()
+  val viewModel = navViewModel<HomeViewModel>()
   val navController = AmbientNavController.current
   HomePokemonList(
-    list = list,
+    pokemonList = viewModel.pokemonList,
     onClick = { model ->
       navController.navigate(Routes.Detail(model.pokemonName))
     }
@@ -41,9 +41,12 @@ fun HomeScene() {
 
 @Composable
 private fun HomePokemonList(
-  list: LazyPagingItems<HomeUiModel>,
+  pokemonList: Flow<PagingData<HomeUiModel>>,
   onClick: (HomeUiModel) -> Unit,
 ) {
+
+  val lazyPokemonList = pokemonList.collectAsLazyPagingItems()
+
   @OptIn(ExperimentalFoundationApi::class)
   LazyVerticalGrid(
     cells = GridCells.Fixed(2)
@@ -52,13 +55,12 @@ private fun HomePokemonList(
     // this state recomposes every time the LazyPagingItems receives an update and changes the
     // recomposerPlaceholder is internal
     @Suppress("UNUSED_VARIABLE")
-    val loadState = list.loadState
+    val loadState = lazyPokemonList.loadState
 
-    val count = list.itemCount
+    val count = lazyPokemonList.itemCount
     items(count) { index ->
-      val pokemon = list[index] ?: return@items
       HomePokemon(
-        model = pokemon,
+        model = lazyPokemonList[index]!!,
         onClick = onClick
       )
     }
